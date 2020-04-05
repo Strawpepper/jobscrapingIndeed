@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobScraper", "JobScraper\JobScraper.csproj", "{D2438E8B-0507-4DC9-B034-68F73413370F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2438E8B-0507-4DC9-B034-68F73413370F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2438E8B-0507-4DC9-B034-68F73413370F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2438E8B-0507-4DC9-B034-68F73413370F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2438E8B-0507-4DC9-B034-68F73413370F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16B01841-C44D-4431-9BE0-D009A5E3873A}
+	EndGlobalSection
+EndGlobal
