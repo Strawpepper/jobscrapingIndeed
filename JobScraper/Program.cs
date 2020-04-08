@@ -10,11 +10,19 @@ namespace JobScraper
     {
         static void Main(string[] args)
         {
-            GetHtmlAsync("link"); //Insert Indeed URL here for jobsearch
+            string role = RoleCall();
+            string location = Location();
+            
+            string indeedLink = $"https://se.indeed.com/jobb?q={role}&l={location}&ts=1586360992832&pts=1586157588027&rq=1&rsIdx=0&fromage=last&newcount=11";
+
+            Console.WriteLine($"Link to results:\n{indeedLink}\n\n**********************************");
+
+            GetAsyncHtml(indeedLink);
             Console.ReadLine();
+
         }
 
-        private static async void GetHtmlAsync(string siteUrl)
+        private static async void GetAsyncHtml(string siteUrl)
         {
             var url = siteUrl;
 
@@ -24,6 +32,11 @@ namespace JobScraper
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
 
+            GenerateJobsIndeed(htmlDocument);
+        }
+
+        private static void GenerateJobsIndeed(HtmlDocument htmlDocument)
+        {
             var companyNames = htmlDocument.DocumentNode.Descendants("span")
                 .Where(node => node.GetAttributeValue("class", "")
                 .Contains("company"))
@@ -47,15 +60,36 @@ namespace JobScraper
                 .ToList();
 
             var jobsPresentation = listOfJobs
-                .Select(x => x.InnerText.Contains("dagar") ? $"{x.InnerText}\n\n**********************************" : x.InnerText)
+                .Select(x => x.InnerText.Contains("dagar") || x.InnerText.Contains("dag") || x.InnerText.Contains("Nyligen") ? $"{x.InnerText}\n\n**********************************" : x.InnerText)
                 .ToList();
 
-            foreach (var item in jobsPresentation)
+            foreach (var job in jobsPresentation)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(job);
             }
 
             Console.WriteLine();
+        }
+
+        private static string RoleCall()
+        {
+            Console.Write("Role: ");
+            string role = Console.ReadLine();
+
+            if (role.Contains(" "))
+                 role = role.Replace(' ', '+'); //If there is more than one word to the role, Indeed separetes the space with '+'
+
+            return role;
+        }
+
+        private static string Location()
+        {
+            Console.Write("Location: ");
+            string loc = Console.ReadLine();
+
+            Console.Clear();
+
+            return loc;
         }
     }
 }
