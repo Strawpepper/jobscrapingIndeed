@@ -18,6 +18,7 @@ namespace JobScraper
             Console.WriteLine($"Link to results:\n{indeedLink}\n\n**********************************");
 
             GetAsyncHtml(indeedLink);
+
             Console.ReadLine();
 
         }
@@ -42,7 +43,7 @@ namespace JobScraper
                 .Contains("company"))
                 .ToList();
 
-            var jobTitles = htmlDocument.DocumentNode.Descendants("div")
+            var jobTitles = htmlDocument.DocumentNode.Descendants("h2")
                 .Where(node => node.GetAttributeValue("class", "")
                 .Contains("title"))
                 .ToList();
@@ -77,7 +78,7 @@ namespace JobScraper
             string role = Console.ReadLine();
 
             if (role.Contains(" "))
-                 role = role.Replace(' ', '+'); //If there is more than one word to the role, Indeed separetes the space with '+'
+                 role = role.Replace(' ', '+'); //If there is more than one word to the role, Indeed replaces the space with '+'
 
             return role;
         }
